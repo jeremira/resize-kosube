@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "resize-kosube"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1nm8c9b33y4l3"
+s3_prefix = "resize-kosube"
+region = "eu-west-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []
