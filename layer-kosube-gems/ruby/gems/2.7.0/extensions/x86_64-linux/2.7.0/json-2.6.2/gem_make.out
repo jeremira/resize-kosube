@@ -1,5 +1,5 @@
 current directory: /var/layer/ruby/ruby/2.7.0/gems/json-2.6.2/ext/json
-/var/lang/bin/ruby -I /var/lang/lib/ruby/site_ruby/2.7.0 -r ./siteconf20221005-1-1bn7pls.rb extconf.rb
+/var/lang/bin/ruby -I /var/lang/lib/ruby/site_ruby/2.7.0 -r ./siteconf20221005-1-13s9u8t.rb extconf.rb
 creating Makefile
 
 current directory: /var/layer/ruby/ruby/2.7.0/gems/json-2.6.2/ext/json

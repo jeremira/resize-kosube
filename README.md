@@ -1,10 +1,39 @@
 # resize-kosube
 
+
+
+
+# Construct layer script
+# https://github.com/stechstudio/libvips-lambda
+# script ton zip a layer
+==============================
+LAYER_NAME="layer-kosube-gems"
+mkdir $LAYER_NAME && cd $_
+bundle init
+bundle add json --skip-install
+bundle add image_processing --skip-install
+rm Gemfile.lock
+docker run --rm -v $PWD:/var/layer \
+           -w /var/layer \
+           amazon/aws-sam-cli-build-image-ruby2.7 \
+           bundle install --path=ruby
+sudo mv ruby/ruby ruby/gems
+zip -r layer.zip ruby
+aws lambda publish-layer-version \
+           --layer-name $LAYER_NAME \
+           --region eu-west-1 \
+           --compatible-runtimes ruby2.7 \
+           --zip-file fileb://layer.zip
+==============================
+
+
+
+
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
 - hello_world - Code for the application's Lambda function.
 - events - Invocation events that you can use to invoke the function.
-- tests - Unit tests for the application code. 
+- tests - Unit tests for the application code.
 - template.yaml - A template that defines the application's AWS resources.
 
 The application uses several AWS resources, including Lambda functions and an API Gateway API. These resources are defined in the `template.yaml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
