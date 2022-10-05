@@ -20,7 +20,9 @@ Resources:
       Architectures:
         - x86_64
       Layers:
-        - arn:aws:lambda:eu-west-1:093031303898:layer:resize-gems-layer:1
+        - arn:aws:lambda:eu-west-1:093031303898:layer:layer-kosube-imgik:1
+        - arn:aws:lambda:eu-west-1:093031303898:layer:image-magick:1
+        - arn:aws:lambda:us-east-1:589405201853:layer:rubyvips892-27:13
       Policies:
         - AmazonS3FullAccess
       Events:
