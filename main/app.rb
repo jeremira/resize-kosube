@@ -15,8 +15,11 @@ def lambda_handler(event:, context:)
 
   ImageProcessing::MiniMagick.source(original_file).convert("jpg").saver(quality: 100).resize_to_fill(100, 100, gravity: 'Center').call(destination: thumbnail_file)
   ImageProcessing::MiniMagick.source(original_file).convert("jpg").saver(quality: 90).resize_to_limit(1200, 1200).call(destination: low_res_file)
-
   s3.bucket('kosube-thumbnail').object("thu_#{object_name}").upload_file(thumbnail_file)
   s3.bucket('kosube-low').object("low_#{object_name}").upload_file(low_res_file)
+
+  File.delete(original_file) if File.exists?(original_file)
+  File.delete(thumbnail_file) if File.exists?(thumbnail_file)
+  File.delete(low_res_file) if File.exists?(low_res_file)
   { statusCode: 200, body: {}.to_json }
 end
